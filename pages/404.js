@@ -5,6 +5,7 @@ import notFoundImg from '../public/romson-preechawit-Vy2cHqm0mCs-unsplash.jpg'
 export default function Custom404Page() {
     return (
         <main className="flex flex-col items-center mt-5 max-w-xs mx-auto md:max-w-2xl">
+            
             <h1 className="text-slate-600 text-lg font-bold md:text-3xl my-4">Page Not Found!</h1>
             
             <div className="hover:cursor-pointer hover:opacity-75">

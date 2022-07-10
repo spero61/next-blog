@@ -9,7 +9,8 @@ export async function getServerSideProps({ query: urlQuery }) {
   // fetch userDoc based on the username
   const userDoc = await getUserWithUsername(username);
 
-  // If no user, short circuit to 404 page
+  // if [username] does not matched to the firestore users
+  // render custom 404 not found page
   if (!userDoc) {
     return {
       notFound: true,

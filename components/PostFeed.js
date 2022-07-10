@@ -16,8 +16,8 @@ function PostItem({ post, admin = false }) {
   const minutesToRead = (words / 100 + 1).toFixed(0);
 
   let timestampFormatted = '12/31 12:34:56'; // initialize the value for debugging
-  if (post?.updatedAt) {
-    const timestamp = new Date(post.updatedAt);
+  if (post?.createdAt) {
+    const timestamp = new Date(post.createdAt);
     // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toLocaleDateString
     timestampFormatted = timestamp.toLocaleDateString('ja-JP').slice(5); // to get rid of year
   }

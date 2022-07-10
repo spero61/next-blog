@@ -1,4 +1,3 @@
-import Head from 'next/head'
 import Image from 'next/image';
 import Link from 'next/link';
 import styles from '../styles/Home.module.css';
@@ -8,6 +7,7 @@ import Loader from '../components/Loader';
 import toast from 'react-hot-toast';
 import { useState } from 'react';
 import PostFeed from '../components/PostFeed';
+import Metatags from '../components/Metatags';
 
 // Max post to query per page
 const LIMIT = 10;
@@ -79,6 +79,7 @@ export default function Home(props) {
     //   <Loader isisLoding={true} ></Loader>
     // </div>
     <main>
+    <Metatags title="Home page" description="index page displays post previews as card layout" />
 
     {/* post preview as a card */}
     <PostFeed posts={posts} />

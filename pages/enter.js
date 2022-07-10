@@ -6,6 +6,7 @@ import { UserContext } from '../lib/context';
 import { useEffect, useState, useCallback, useContext } from 'react';
 import debounce from 'lodash.debounce';
 import { useRouter } from 'next/router';
+import Metatags from '../components/Metatags';
 
 export default function EnterPage(props) {
   const { user, username } = useContext(UserContext);
@@ -17,6 +18,7 @@ export default function EnterPage(props) {
 
   return (
     <main>
+      <Metatags title="enter page" description="handling user sign-in and setting username" />
       {!user ?
         <SignInButton /> : !username ?
           <UsernameForm /> : <GoToIndexPage />
@@ -67,7 +69,7 @@ function SignInButton() {
 // * can be improved, will try later on *
 function GoToIndexPage() {
   const router = useRouter();
-  
+
   return(
       <button type="hidden" onClick={router.push('/')}></button>
   )
