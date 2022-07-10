@@ -4,6 +4,7 @@
 - Client-Side Pagination
 - Custom Username
 - Incremental Static Regeneration
+- [lodash.debounce v4.0.8](https://www.npmjs.com/package/lodash.debounce)
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 

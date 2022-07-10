@@ -2,13 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap');
+
 html,
 body {
   padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-  background-color: cadetblue;
+  font-family: 'Noto Sans JP', sans-serif;
+  background-color: #E0E0CE ;
 }
 
 a {
@@ -26,5 +27,5 @@ a {
   height: 15px;
   margin: 40vh auto;
   border-radius: 50%;
-  background: lightgoldenrodyellow;
+  background: #DA4167;
 }

@@ -48,12 +48,10 @@ export default function Navbar() {
             <span className="hover:cursor-pointer">
               <Link href={`/${username}`}>
                 <a>
-                  <Image
-                    src={user?.photoURL || '/default_avatar.png'}
-                    width={45}
-                    height={45}
-                    alt="User Profile Photo"
-                  />
+                  <img src={user?.photoURL || '/default_avatar.png'} className="rounded-full" width="45px" height="45px" alt="User's Google Profile Picture" />
+                  {/* I used img tag instead, not sure if there is another domain other than lh3.googleusercontent.com */}
+                  {/* at least I added that domain in next.config.js file so commented out Image tag also works at the moment */}
+                  {/* <Image src={user?.photoURL || '/default_avatar.png'} width={45} height={45} alt="User Profile Photo"/> */}
                 </a>
               </Link>
             </span>
