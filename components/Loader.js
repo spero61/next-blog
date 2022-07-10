@@ -1,5 +1,4 @@
 import { motion } from 'framer-motion';
-import styles from '../styles/Loader.module.css'
 
 const loaderVariants = {
   bouncingBall: {
@@ -25,7 +24,7 @@ const MotionLoader = () => {
   return (
     <>
       <motion.div
-        className={styles.bouncingBall}
+        className="bouncingBall"
         variants={loaderVariants}
         animate="bouncingBall"
       ></motion.div>
