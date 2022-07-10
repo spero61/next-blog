@@ -20,11 +20,11 @@ export default function Navbar() {
   };
 
   return (
-    <nav className="bg-white border-gray-200 px-3 py-3 md:px-4 py-3 sticky">
+    <nav className="bg-stone-50 border-gray-200 px-3 py-3 md:px-4 py-3 sticky">
       <div className="flex flex-wrap justify-between items-center">
         <span className="hover:cursor-pointer">
           <Link href="/">
-            <a>
+            <a className="hover:opacity-75">
               <Image src={blogLogo} width={126} height={36} alt="Blog Logo" />
             </a>
           </Link>
@@ -34,20 +34,20 @@ export default function Navbar() {
         {username && (
           <div className="flex items-center">
             <button
-              className="text-stone-800 hover:text-stone-100 bg-slate-200 hover:bg-slate-400 rounded-full font-medium text-xs px-2 py-2.5 py-2 mx-1 md:text-base md:px-5 md:py-2.5 md:mx-3"
+              className="text-stone-800 hover:text-stone-100 bg-slate-200 hover:bg-slate-400 rounded-full font-bold text-xs px-2 py-2.5 py-2 mx-1 md:text-sm md:px-5 md:py-2.5 md:mx-3"
               onClick={signOutNow}
             >
               Sign Out
             </button>
 
             <Link href="/admin">
-              <button className="text-stone-100 bg-orange-500 hover:bg-orange-700 rounded-full font-medium text-xs px-2 py-2.5 py-2 mx-1 md:text-base md:px-5 md:py-2.5 md:mx-3">
+              <button className="text-stone-100 bg-teal-500 hover:bg-teal-700 rounded-full font-bold text-xs px-2 py-2.5 py-2 mx-1 md:text-sm md:px-5 md:py-2.5 md:mx-3">
                 Write Posts
               </button>
             </Link>
-            <span className="hover:cursor-pointer">
+            <span className="md:ml-3">
               <Link href={`/${username}`}>
-                <a>
+                <a className="hover:opacity-75">
                   <img src={user?.photoURL || '/default_avatar.png'} className="rounded-full" width="45px" height="45px" alt="User's Google Profile Picture" />
                   {/* I used img tag instead, not sure if there is another domain other than lh3.googleusercontent.com */}
                   {/* at least I added that domain in next.config.js file so commented out Image tag also works at the moment */}
@@ -63,7 +63,7 @@ export default function Navbar() {
           <Link href="/enter">
             <button
               type="button"
-              className="text-stone-100 bg-orange-500 hover:bg-orange-800 rounded-full font-medium text-xs px-2 py-2.5 py-2 mx-1 md:text-base md:px-7 md:py-2.5 md:mx-3"
+              className="text-stone-100 bg-teal-500 hover:bg-teal-700 rounded-full font-bold text-xs px-5 py-2.5 py-2 mx-1 md:text-sm md:px-7 md:py-2.5 md:mx-3"
             >
               Login
             </button>

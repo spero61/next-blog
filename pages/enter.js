@@ -1,12 +1,13 @@
 import Image from 'next/image';
 import { auth, Debug, googleAuthProvider } from '../lib/firebaseConfig';
-import { doc, writeBatch, getDoc, getFirestore } from 'firebase/firestore';
+import { doc, writeBatch, getDoc, getFirestore, /* serverTimestamp */ } from 'firebase/firestore';
 import { signInWithPopup, signInAnonymously, signOut } from 'firebase/auth';
 import { UserContext } from '../lib/context';
 import { useEffect, useState, useCallback, useContext } from 'react';
 import debounce from 'lodash.debounce';
+import { useRouter } from 'next/router';
 
-export default function Enter(props) {
+export default function EnterPage(props) {
   const { user, username } = useContext(UserContext);
 
   // https://reactjs.org/docs/conditional-rendering.html#inline-if-else-with-conditional-operator
@@ -16,13 +17,10 @@ export default function Enter(props) {
 
   return (
     <main>
-      {!user ? (
-        <SignInButton />
-      ) : !username ? (
-        <UsernameForm />
-      ) : (
-        <SignOutButton />
-      )}
+      {!user ?
+        <SignInButton /> : !username ?
+          <UsernameForm /> : <GoToIndexPage />
+      }
     </main>
   );
 }
@@ -46,7 +44,9 @@ function SignInButton() {
             onClick={signInWithGoogle}
           />
         </div>
-        <div className="w-80 hover:cursor-pointer hidden">
+
+        {/* Sign in Anonymously => firebase Sign-in providers => Anonymous: Enabled is required */}
+        <div className="w-80 hover:cursor-pointer">
           <Image
             width="380px"
             height="90px"
@@ -60,17 +60,30 @@ function SignInButton() {
   );
 }
 
-// Sign out button
-function SignOutButton() {
-  return (
-    <button
-      className="text-stone-800 hover:text-stone-100 bg-teal-400 hover:bg-teal-600 px-3 py-2 rounded-full"
-      onClick={() => signOut(auth)}
-    >
-      Sign Out
-    </button>
-  );
+// a component for naively redirect to the main page
+// used onClick={router.push('/')} instead of onClick={() => router.push('/')}
+// so that next router to redirect to the index page
+// as soon as this button component is mounted(rendered) by react
+// * can be improved, will try later on *
+function GoToIndexPage() {
+  const router = useRouter();
+  
+  return(
+      <button type="hidden" onClick={router.push('/')}></button>
+  )
 }
+
+// // Sign out button
+// function SignOutButton() {
+//   return (
+//     <button
+//       className="text-stone-800 hover:text-stone-100 bg-teal-400 hover:bg-teal-600 px-3 py-2 rounded-full"
+//       onClick={() => signOut(auth)}
+//     >
+//       Sign Out
+//     </button>
+//   );
+// }
 
 // Username form
 function UsernameForm() {
@@ -93,8 +106,12 @@ function UsernameForm() {
       username: formValue,
       photoURL: user.photoURL,
       displayName: user.displayName,
+      // timestamp: serverTimestamp(),
     });
-    batch.set(usernameDoc, { uid: user.uid });
+    batch.set(usernameDoc, {
+      uid: user.uid,
+      // timestamp: serverTimestamp(),
+    });
 
     await batch.commit();
   };
@@ -173,6 +190,8 @@ function UsernameForm() {
               placeholder="type here..."
               value={formValue}
               onChange={onChange}
+              autoComplete="off"
+              autoFocus
             />
           </div>
 

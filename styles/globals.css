@@ -9,7 +9,7 @@ body {
   padding: 0;
   margin: 0;
   font-family: 'Noto Sans JP', sans-serif;
-  background-color: #E0E0CE ;
+  background-color: #e6e0d2 ;
 }
 
 a {
@@ -23,9 +23,9 @@ a {
 
 /* Loader.js */
 .bouncingBall {
-  width: 15px;
-  height: 15px;
-  margin: 40vh auto;
+  width: 12px;
+  height: 12px;
+  margin: 10px auto;
   border-radius: 50%;
   background: #DA4167;
 }
