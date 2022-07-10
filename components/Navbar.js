@@ -11,8 +11,8 @@ import { signOut } from 'firebase/auth';
 export default function Navbar() {
   //   const { user, username } = useContext(UserContext);
 
-  const username = null;
-  const user = null;
+  const username = true;
+  const user = true;
 
   const router = useRouter();
 

@@ -5,6 +5,9 @@ import styles from '../styles/Home.module.css';
 import { useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import { auth } from '../lib/firebaseConfig';
 import Loader from '../components/Loader';
+import toast from 'react-hot-toast';
+
+const notify = () => toast.success('Here is your toast.');
 
 export default function Home() {
   const [signInWithGoogle] = useSignInWithGoogle(auth);
@@ -27,9 +30,7 @@ export default function Home() {
           // onClick={() => signInWithGoogle('', { prompt: 'select_account' })}
         />
       </Link> */}
-      <h1 className="text-2xl font-bold underline">
-      Hello world!
-    </h1>
+      <button className="text-slate-200 text-lg font-bold bg-pink-600 rounded-full px-3 py-2" onClick={notify}>Make me a toast</button>
       <Loader isLoading={true} ></Loader>
     </div>
   );
