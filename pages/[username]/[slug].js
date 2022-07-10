@@ -82,29 +82,32 @@ export default function PostPage(props) {
   const { user: currentUser } = useContext(UserContext);
 
   return (
-    <main className="flex flex-col items-center">
-      <section>
-        <p className="text-slate-700 mt-2">
-          {post.starCount || 0} ⭐
-        </p>
-        <AuthCheck
-          fallback={
-            <Link href="/enter">
-              <button className="text-xs text-stone-100 bg-rose-400 rounded-full px-4 py-1.5 my-2 md:text-sm">Sign Up</button>
-            </Link>
-          }
-        >
-          <StarCounter postRef={postRef} />
-        </AuthCheck>
-
-        {currentUser?.uid === post.uid && (
-          <Link href={`/admin/${post.slug}`}>
-            <button className="btn-blue">Edit Post</button>
-          </Link>
-        )}
-      </section>
-      <section>
+    <main className="flex flex-wrap justify-between items-center">
+      <section className="w-full mt-6 mx-auto rounded-lg text-slate-700 bg-slate-50 shadow p-5 text-gray-800 max-w-xs md:max-w-xl">
+        <div className="flex justify-end">
+          <AuthCheck
+            fallback={
+              <Link href="/enter">
+                <button className="text-xs text-stone-100 bg-rose-400 rounded-full px-4 py-1.5 my-2 md:text-sm">Sign Up</button>
+              </Link>
+            }
+          >
+            <StarCounter postRef={postRef} />
+          </AuthCheck>
+          <p className="text-slate-700">
+            {post.starCount || 0} ⭐
+          </p>
+        </div>
         <PostContent post={post} />
+        <div className="flex justify-center mt-3">
+          {currentUser?.uid === post.uid && (
+            <Link href={`/admin/${post.slug}`}>
+              <button className="text-xs text-stone-100 bg-rose-400 rounded-full px-4 py-1.5 my-1 md:text-sm md:my-2">
+                Edit Post
+              </button>
+            </Link>
+          )}
+        </div>
       </section>   
     </main>
   );

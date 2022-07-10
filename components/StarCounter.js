@@ -4,7 +4,7 @@ import { increment, writeBatch, doc, getFirestore } from "firebase/firestore";
 
 
 // Allows user to star or like a post
-export default function Star({ postRef }) {
+export default function StarCounter({ postRef }) {
   // Listen to star document for currently logged in user
   const starRef = doc(getFirestore(), postRef.path, 'stars', auth.currentUser.uid);
   const [starDoc] = useDocument(starRef);
@@ -31,8 +31,8 @@ export default function Star({ postRef }) {
   };
 
   return starDoc?.exists() ? (
-    <button onClick={removeStar}>🪨 Unstar</button>
+    <button className="text-sm text-slate-600 bg-stone-100 mr-3 rounded-lg px-2" onClick={removeStar}>🌠 Unstar</button>
   ) : (
-    <button onClick={addStar}>⭐ Star</button>
+    <button className="text-sm text-slate-600 bg-orange-100 mr-3 rounded-lg px-2" onClick={addStar}>✨ Add Star</button>
   );
 }
