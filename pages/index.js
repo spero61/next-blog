@@ -22,7 +22,7 @@ export async function getServerSideProps(context) {
   )
 
   const posts = (await getDocs(postsQuery)).docs.map(postToJSON);
- 
+
   return {
     props: { posts },
   };
@@ -66,31 +66,19 @@ export default function Home(props) {
   };
 
   return (
-    // <div className={styles.container}>
-    //   {/* <Link
-    //     prefetch={true}
-    //     href={{
-    //       pathname: '/[username]',
-    //       query: { username: 'spero61' },
-    //     }}
-    //   >
-    //   </Link> */}
-    //   <button className="text-slate-200 text-lg font-bold bg-pink-600 rounded-full px-3 py-2" onClick={notify}>Make me a toast</button>
-    //   <Loader isisLoding={true} ></Loader>
-    // </div>
     <main>
-    <Metatags title="Home page" description="index page displays post previews as card layout" />
+      <Metatags title="Home page" description="index page displays post previews as card layout" />
 
-    {/* post preview as a card */}
-    <PostFeed posts={posts} />
+      {/* post preview as a card */}
+      <PostFeed posts={posts} />
 
-    {/* loading more posts */}
-    <div className="flex justify-center my-4">
-      {!isLoding && !postsEnd && <button className="text-stone-100 bg-rose-400 hover:bg-rose-500 rounded-full font-bold text-xs px-2 py-2.5 py-2 mx-1 md:text-sm md:px-5 md:py-2.5 md:mx-3" onClick={getMorePosts} type="button">Load more</button>}
-      <Loader isLoading={isLoding} />  
-      <p className="text-slate-600 font-bold text-xs md:text-sm">{postsEnd && 'There is no more post!'}</p>
-    </div>
-
-  </main>
+      {/* loading more posts */}
+      <div className="flex justify-center my-4">
+        {!isLoding && !postsEnd && <button className="text-stone-100 bg-rose-400 hover:bg-rose-500 rounded-full font-bold text-xs px-2 py-2.5 py-2 mx-1 md:text-sm md:px-5 md:py-2.5 md:mx-3" onClick={getMorePosts} type="button">Load more</button>}
+        <Loader isLoading={isLoding} />
+        <p className="text-slate-600 font-bold text-xs md:text-sm">{postsEnd && 'There is no more post!'}</p>
+      </div>
+      
+    </main>
   );
 }

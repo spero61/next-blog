@@ -40,7 +40,7 @@ export default function Navbar() {
               Sign Out
             </button>
 
-            <Link href="/admin">
+            <Link href="/edit">
               <button className="text-stone-100 bg-teal-500 hover:bg-teal-700 rounded-full font-bold text-xs px-2 py-2.5 py-2 mx-1 md:text-sm md:px-5 md:py-2.5 md:mx-2">
                 Write Posts
               </button>
