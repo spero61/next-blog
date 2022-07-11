@@ -1,9 +1,20 @@
 import Link from 'next/link';
-import ReactMarkdown from 'react-markdown';
 
 // UI component for main post content
 export default function PostContent({ post }) {
   const createdAt = typeof post?.createdAt === 'number' ? new Date(post.createdAt) : post.createdAt.toDate();
+  
+  // to deal with line break
+  const postContent = post?.content;
+  const sentenceArray = typeof postContent == 'string' ? postContent.split('\n') : ["none"];
+  const FormattedContent = () => {
+    return (
+      sentenceArray.map((elem, index) =>
+        elem === ''
+          ? <p className="leading-3"><br /></p>
+          : <p className="text-sm leading-relaxed" key={`${index}`}>{elem}</p>)
+    )
+  }
 
   return (
     <div>
@@ -16,12 +27,13 @@ export default function PostContent({ post }) {
       </p>
       <div className="my-4">
         {/* need to styling later */}
-        <ReactMarkdown>{post?.content}</ReactMarkdown>
+        <FormattedContent />
+        {/* {console.log(sentenceArray)} */}
       </div>
       <p className="text-gray-400 text-xs flex justify-end mt-3">
         {createdAt.toLocaleDateString('ja-JP')}
         {' '}
-        {createdAt.toLocaleTimeString('ja-JP').slice(0,-3)}
+        {createdAt.toLocaleTimeString('ja-JP').slice(0, -3)}
       </p>
     </div>
   );

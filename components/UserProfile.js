@@ -9,7 +9,7 @@ export default function UserProfile({ user }) {
         @{user?.username}
       </h3>
       <h2 className="text-gray-600 text-lg font-bold my-1 md:text-2xl md:my-2">
-        {user?.displayName || '匿名さん'}
+        {user?.displayName || 'nobody'}
       </h2>
     </div>
   );

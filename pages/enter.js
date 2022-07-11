@@ -186,7 +186,7 @@ function UsernameForm() {
               Username
             </label>
             <input
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-slate-700 leading-tight text-xl focus:outline-none focus:shadow-outline"
+              className="shadow appearance-none border rounded w-full py-2 px-3 text-slate-700 leading-tight text-xl focus:outline-none focus:ring-2 focus:ring-teal-200"
               name="username"
               type="text"
               placeholder="type here..."

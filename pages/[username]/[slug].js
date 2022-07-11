@@ -2,11 +2,13 @@ import PostContent from '../../components/PostContent';
 import StarCounter from '../../components/StarCounter';
 import AuthCheck from '../../components/AuthCheck';
 import { UserContext } from '../../lib/context';
+import { useRouter } from 'next/router';
 import { db, getUserWithUsername, postToJSON } from '../../lib/firebaseConfig';
-import { doc, getDocs, getDoc, collectionGroup, query, limit, getFirestore } from 'firebase/firestore';
+import { doc, getDocs, getDoc, collectionGroup, query, limit, getFirestore, deleteDoc } from 'firebase/firestore';
 import Link from 'next/link';
 import { useDocumentData } from 'react-firebase-hooks/firestore';
 import { useContext } from 'react';
+import toast from 'react-hot-toast';
 
 // fetch date from the server at build time
 // pre-render the page in advance
@@ -81,6 +83,10 @@ export default function PostPage(props) {
 
   const { user: currentUser } = useContext(UserContext);
 
+  async function deletePost() {
+    await deleteDoc(doc(db, ``))
+  }
+
   return (
     <main className="flex flex-wrap justify-between items-center">
       <section className="w-full mt-6 mx-auto rounded-lg text-slate-700 bg-slate-50 shadow p-5 text-gray-800 max-w-xs md:max-w-xl">
@@ -88,7 +94,7 @@ export default function PostPage(props) {
           <AuthCheck
             fallback={
               <Link href="/enter">
-                <button className="text-xs text-stone-100 bg-rose-400 rounded-full px-4 py-1.5 my-2 md:text-sm">Sign Up</button>
+                <button className="text-xs mx-auto text-stone-100 bg-rose-400 rounded-full px-4 py-2 mb-5 md:text-base hover:bg-pink-500">Sign Up!</button>
               </Link>
             }
           >
@@ -100,15 +106,40 @@ export default function PostPage(props) {
         </div>
         <PostContent post={post} />
         <div className="flex justify-center mt-3">
-          {currentUser?.uid === post.uid && (
-            <Link href={`/admin/${post.slug}`}>
+          {/* implement later: when the user owns the post display Edit feature */}
+          {/* {currentUser?.uid === post.uid && (
+            <Link href={`/edit/${post.slug}`}>
               <button className="text-xs text-stone-100 bg-rose-400 rounded-full px-4 py-1.5 my-1 md:text-sm md:my-2">
                 Edit Post
               </button>
             </Link>
+          )} */}
+
+          {/* when the user owns the post display Delete feature */}
+          {currentUser?.uid === post.uid && (
+            <DeletePostButton postRef={postRef} />
           )}
         </div>
       </section>   
     </main>
+  );
+}
+
+function DeletePostButton({ postRef }) {
+  const router = useRouter();
+
+  const deletePost = async () => {
+    const doIt = window.confirm('Delete this post?');
+    if (doIt) {
+      await deleteDoc(postRef);
+      router.push('/edit');
+      toast.success('Post Deleted!');
+    }
+  };
+
+  return (
+    <button className="text-xs text-stone-100 bg-pink-600 rounded-full px-4 py-1.5 my-1 md:text-sm md:my-2 hover:bg-pink-900" onClick={deletePost}>
+      Delete Post
+    </button>
   );
 }
