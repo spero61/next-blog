@@ -94,20 +94,25 @@ function CreateNewPost() {
             autoFocus
           />
         </div>
+        <p className="text-center">
+          <strong className="text-slate-500 text-xs mx-2">
+            title should be in English alphabets for now
+          </strong>
+        </p>
         {/* for debugging title*/}
         {/* <p className="text-center mt-1">
           <strong className="text-slate-700 text-xs mx-2">{
             slug}
           </strong>
         </p> */}
-        <div className="flex flex-col justify-center items-center mt-2">
+        <div className="flex flex-col justify-center items-center mt-0">
           <textarea
             id="content"
             name="content"
             onChange={(e) => setContent(e.target.value)}
             rows="4"
-            className="h-96 p-2.5 mt-6 w-full text-sm text-slate-700 bg-gray-50 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-violet-300"
-            placeholder="Your message..."
+            className="h-64 p-2.5 mt-6 w-full text-sm text-slate-700 bg-gray-50 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-violet-300 md:h-96"
+            placeholder="Your message...(UTF-8)"
           ></textarea>
           {/* <fieldset className="flex align-middle mt-1">
             <input className="checkbox mr-1" name="published" type="checkbox" />

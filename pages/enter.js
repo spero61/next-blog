@@ -180,11 +180,12 @@ function UsernameForm() {
         >
           <div className="mb-4">
             <label
-              className="block text-gray-700 text-lg font-bold mb-2"
+              className="block text-gray-700 text-lg font-bold mb-1"
               htmlFor="username"
             >
               Username
             </label>
+            <p className="text-stone-500 mb-3">alphabets and numbers only</p>
             <input
               className="shadow appearance-none border rounded w-full py-2 px-3 text-slate-700 leading-tight text-xl focus:outline-none focus:ring-2 focus:ring-teal-200"
               name="username"
