@@ -67,7 +67,7 @@ export default function Home(props) {
 
   return (
     <main>
-      <Metatags title="Home page" description="index page displays post previews as card layout" />
+      <Metatags title="Spero61 Blog" description="index page displays post previews as card layout" />
 
       {/* post preview as a card */}
       <PostFeed posts={posts} />
